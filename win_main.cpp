@@ -64,15 +64,31 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreviousInstance, LPSTR lpCmd
         NULL
     );
 
+    HWND Scene = CreateWindow(
+        "STATIC",
+        NULL,
+        WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS,
+        0,
+        0,
+        640,
+        480,
+        hWnd,
+        NULL,
+        hInstance,
+        NULL
+    );
+
+    sf::RenderWindow SceneWindow(Scene);
+
     MSG message = {};
     message.message = static_cast<UINT>(~WM_QUIT);
     while(message.message != WM_QUIT)
     {
         if (PeekMessage(&message, NULL, 0, 0, PM_REMOVE))
         {
-            // If a message was waiting in the message queue, process it
             TranslateMessage(&message);
             DispatchMessage(&message);
+            SceneWindow.display();
         }
     }
 
