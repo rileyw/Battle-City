@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-
+//  Callback function 
 typedef void (*TileProvider)(int,int,int,sf::Color&, sf::IntRect&);
 
 class MapRenderer : public sf::Drawable

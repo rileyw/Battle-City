@@ -91,6 +91,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreviousInstance, LPSTR lpCmd
     MapLoader mapLoader;
     map.LoadFrom(&mapLoader);
 
+    sf::Clock clock;
 
     MSG message = {};
     message.message = static_cast<UINT>(~WM_QUIT);
@@ -100,6 +101,25 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreviousInstance, LPSTR lpCmd
         {
             TranslateMessage(&message);
             DispatchMessage(&message);
+        } else {
+            float time = clock.getElapsedTime().asSeconds();
+		        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+			        SceneCamera.zoom(1.05f);
+
+		        if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+			        SceneCamera.move(0.f,-10.f);
+
+		        if(sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+			        SceneCamera.zoom(0.95f);
+
+		        if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			        SceneCamera.move(-10.f,0.f);
+
+		        if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+			        SceneCamera.move(0.f,10.f);
+
+		        if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+			        SceneCamera.move(10.f,0.f);
             SceneWindow.setView(SceneCamera);
             SceneWindow.clear();
             SceneWindow.draw(map);
