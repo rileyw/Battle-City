@@ -1,5 +1,10 @@
 #include <windows.h>
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Window.hpp>
+#include "map/tile_loader.h"
+#include "map/static_tiled_map.h"
+#include "map/map_loader.h"
 
 //  Handles messaging for WinMain
 //  http://msdn.microsoft.com/en-us/library/ms633569(v=vs.85).aspx
@@ -21,6 +26,7 @@ LONG WINAPI MainWndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     //  http://msdn.microsoft.com/en-us/library/ms633572.aspx
     return DefWindowProc(hWnd,uMsg,wParam,lParam);
 }
+
 /// <summary>
 /// Windows 32 main entry point
 /// </summary>
@@ -48,7 +54,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreviousInstance, LPSTR lpCmd
     {
         MessageBox(NULL,"Could not register window class","Window class registration failed",MB_ICONEXCLAMATION | MB_OK);
     }
-
+    //  Initialize the display window
     HWND hWnd = CreateWindowEx(
         WS_EX_TOPMOST,
         "Battle-City",
@@ -79,6 +85,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreviousInstance, LPSTR lpCmd
     );
 
     sf::RenderWindow SceneWindow(Scene);
+    sf::View SceneCamera = SceneWindow.getDefaultView();
+    
+    StaticTiledMap map;
+    MapLoader mapLoader;
+    map.LoadFrom(&mapLoader);
+
 
     MSG message = {};
     message.message = static_cast<UINT>(~WM_QUIT);
@@ -88,6 +100,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPreviousInstance, LPSTR lpCmd
         {
             TranslateMessage(&message);
             DispatchMessage(&message);
+            SceneWindow.setView(SceneCamera);
+            SceneWindow.clear();
+            SceneWindow.draw(map);
             SceneWindow.display();
         }
     }

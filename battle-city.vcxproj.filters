@@ -13,10 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{c7550334-abb0-4b88-8677-e8154ace7496}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="win_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="map\map_renderer.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="map\static_tiled_map.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="map\map_loader.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="map\map_renderer.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\tile_loader.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\static_tiled_map.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="map\map_loader.h">
+      <Filter>Map</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

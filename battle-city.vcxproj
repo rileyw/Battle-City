@@ -71,7 +71,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="map\map_loader.cpp" />
+    <ClCompile Include="map\map_renderer.cpp" />
+    <ClCompile Include="map\static_tiled_map.cpp" />
     <ClCompile Include="win_main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="map\map_loader.h" />
+    <ClInclude Include="map\map_renderer.h" />
+    <ClInclude Include="map\static_tiled_map.h" />
+    <ClInclude Include="map\tile_loader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
